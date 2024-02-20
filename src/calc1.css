@@ -1,0 +1,67 @@
+.navbar {
+    font-family: Arial, sans-serif;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"], button {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+h3 {
+    margin-top: 20px;
+}
+
+i {
+    color: #888;
+}
+
+/* Media Queries for Responsive Design */
+
+/* Small devices (phones, 576px and up) */
+@media (min-width: 576px) {
+    .navbar {
+        max-width: 80%;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .navbar {
+        max-width: 60%;
+    }
+}
+/* CSS for center-aligning the copyright notice */
+.copyright {
+    display: block;
+    text-align: center;
+    font-size: smaller;
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .navbar {
+        max-width: 40%;
+    }
+}
