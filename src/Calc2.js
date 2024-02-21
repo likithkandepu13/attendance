@@ -32,6 +32,22 @@ const Calc2 = () => {
 
     const calculateTotal = () => {
         let totalScore = 0;
+        if(lect===0)
+        {
+            totalWeight-=lectureWeight
+        }
+        if(tut===0)
+        {
+            totalWeight-=tutorialWeight
+        }
+        if(pract===0)
+        {
+            totalWeight-=labWeight
+        }
+        if(skill===0)
+        {
+            totalWeight-=skillWeight
+        }
 
         if (lect !== 0) {
             totalScore += parseInt(lect) * (lectureWeight / 100);
