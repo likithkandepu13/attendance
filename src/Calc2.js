@@ -8,10 +8,10 @@ const Calc2 = () => {
     const tutorialWeight = 25;
     let totalWeight = lectureWeight + skillWeight + labWeight + tutorialWeight;
 
-    const [lect, setLect] = useState(0);
-    const [tut, setTut] = useState(0);
-    const [pract, setPract] = useState(0);
-    const [skill, setSkill] = useState(0);
+    const [lect, setLect] = useState('');
+    const [tut, setTut] = useState('');
+    const [pract, setPract] = useState('');
+    const [skill, setSkill] = useState('');
     const [attendancePercentage, setAttendancePercentage] = useState();
 
     const handleLectureChange = (event) => {
@@ -32,17 +32,33 @@ const Calc2 = () => {
 
     const calculateTotal = () => {
         let totalScore = 0;
+        if(lect==='')
+        {
+            totalWeight-=lectureWeight
+        }
+        if(tut==='')
+        {
+            totalWeight-=tutorialWeight
+        }
+        if(pract==='')
+        {
+            totalWeight-=labWeight
+        }
+        if(skill==='')
+        {
+            totalWeight-=skillWeight
+        }
 
-        if (lect !== 0) {
+        if (lect !== '') {
             totalScore += parseInt(lect) * (lectureWeight / 100);
         }
-        if (skill !== 0) {
+        if (skill !== '') {
             totalScore += parseInt(skill) * (skillWeight / 100);
         }
-        if (pract !== 0) {
+        if (pract !== '') {
             totalScore += parseInt(pract) * (labWeight / 100);
         }
-        if (tut !== 0) {
+        if (tut !== '') {
             totalScore += parseInt(tut) * (tutorialWeight / 100);
         }
 
@@ -57,7 +73,7 @@ const Calc2 = () => {
               <h4 style={{textAlign: "center", fontFamily: "Arial, sans-serif"}}>
 Please input the following details to obtain your overall attendance for a specific subject.</h4>
 <i>
-(If no component is present, please leave it as 0)</i><br/><br/>
+(If no component is present, please leave it)</i><br/><br/>
             
               <label>
 Please enter the lecture component :</label>
