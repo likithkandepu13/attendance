@@ -68,7 +68,7 @@ Please enter the total number of classes: :</label>
     <button onClick={newatp}>Submit</button><br/>
 
     <h3>
-Updated Attendance after Absence:: </h3>
+Updated Attendance after Absence: </h3>
     {
         
         pap >= 85 ?
