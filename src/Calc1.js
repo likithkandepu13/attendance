@@ -3,12 +3,12 @@ import './navbar.css'
 
 
 const Calc1 = () => {
-    const [tclass1,setclass1] = useState(0)
-    const [tclass2,settclass2] = useState(0)
+    const [tclass1,setclass1] = useState('')
+    const [tclass2,settclass2] = useState('')
     const [attendancePercentage, setAttendancePercentage] = useState()
-    const [ap,setap] = useState(0)
+    const [ap,setap] = useState('')
     const [pap,setpap] = useState()
-    const [classes1,setclasees] = useState(0)
+    const [classes1,setclasees] = useState('')
 
     const class1set = (event) => {
         setclass1(event.target.value)
@@ -68,7 +68,7 @@ Please enter the total number of classes: :</label>
     <button onClick={newatp}>Submit</button><br/>
 
     <h3>
-Updated Attendance after Absence: </h3>
+Updated Attendance after Absence:: </h3>
     {
         
         pap >= 85 ?
