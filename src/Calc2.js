@@ -79,13 +79,13 @@ Please input the following details to obtain your overall attendance for a speci
 Please enter the lecture component :</label>
                 <input  type="text" id='lect' value={lect} onChange={handleLectureChange} />
                  <label>
-Please enter the tutorial component: :</label>
+Please enter the tutorial component : </label>
                  <input type="text" id='tut'  value={tut} onChange={handleTutorialChange} />
                 <label>
-Please enter the practical component: :</label>
+Please enter the practical component : </label>
                 <input  type="text" id='pract'  value={pract} onChange={handlePracticalChange} />
                  <label>
-Please enter the skilling component: :</label>
+Please enter the skilling component : </label>
                  <input  type="text" id='skill'  value={skill} onChange={handleSkillChange} />
           
                  <button onClick={calculateTotal}>Submit</button>
