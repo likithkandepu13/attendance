@@ -43,10 +43,10 @@ const Calc1 = () => {
         <div class="navbar">
     <h1 style={{textAlign: "center", fontFamily: "Arial, sans-serif"}}>KLU Attendance Calculator</h1>
     <label for="tclass1">
-Please enter the total number of classes: :</label>
+Please enter the total number of classes :</label>
     <input type="text" value={tclass1} onChange={class1set} id="tclass1"/><br/>
 
-    <label for="tclass2">Please enter the number of classes you have attended: :</label>
+    <label for="tclass2">Please enter the number of classes you have attended :</label>
     <input type="text" value={tclass2} onChange={class2set} id="tclass2"/><br/>
 
     <button onClick={calci}>Submit</button><br/>
@@ -68,7 +68,7 @@ Please enter the total number of classes: :</label>
     <button onClick={newatp}>Submit</button><br/>
 
     <h3>
-Updated Attendance after Absence:: </h3>
+Updated Attendance after Absence : </h3>
     {
         
         pap >= 85 ?
