@@ -1,4 +1,4 @@
-Revise: KLU Attendance Tracker
+ KLU Attendance Tracker
 This online tool is designed for monitoring student attendance at KLU. It features modules to track attendance drops for specific classes due to absences. Additionally, it provides a comprehensive overview of overall subject attendance, calculated using the Lecture, Tutorial, Practical, and Skill (LTPS) structure.
 
 "The KLU Attendance Calculator is a web application developed using React and CSS, employing the concept of Hooks to assign values to an object and display them."
