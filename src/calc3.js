@@ -6,9 +6,8 @@ const Calc3 = () => {
     const [tclass1,setclass1] = useState('')
     const [tclass2,settclass2] = useState('')
     const [attendancePercentage, setAttendancePercentage] = useState()
-    const [ap,setap] = useState('')
-    const [pap,setpap] = useState()
-    const [classes1,setclasees] = useState('')
+
+
 
     const class1set = (event) => {
         setclass1(event.target.value)
@@ -21,24 +20,10 @@ const Calc3 = () => {
 
         setAttendancePercentage(Math.round(sum));
     }
-    const setapfun =(event)=>
-    {
-        setap(event.target.value)
-    }
-    const  nofclasses = (event) =>
-    {
-        setclasees(event.target.value)
-    }
-    const newatp = () =>
-    {
-        const sum = (parseInt(tclass2- classes1)/parseInt(tclass1 ))*100
+    
+ 
 
-        setpap(Math.round(sum));
-    }
-    const newatp2 = () =>
-    {
-        
-    }
+ 
     return (
         <div class="navbar">
     <h1 style={{textAlign: "center", fontFamily: "Arial, sans-serif"}}>KLU Attendance Calculator</h1>
