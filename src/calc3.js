@@ -21,6 +21,11 @@ const Calc3 = () => {
         setAttendancePercentage(Math.round(sum));
     }
     
+    let alertMessage = null;
+    if (parseInt(tclass1) < parseInt(tclass2)) {
+        alertMessage = <div style={{color:"red"}}> (Total classes is Less than the attended)</div>;
+    }
+
  
 
  
@@ -28,10 +33,11 @@ const Calc3 = () => {
         <div class="navbar">
     <h1 style={{textAlign: "center", fontFamily: "Arial, sans-serif"}}>KLU Attendance Calculator</h1>
     <label for="tclass1">Enter Total no of classes :</label>
-    <input type="text" value={tclass1} onChange={class1set} id="tclass1"/><br/>
+    <input type="number" value={tclass1} onChange={class1set} id="tclass1"/><br/>
 
     <label for="tclass2">Enter no of classes you have attended :</label>
-    <input type="text" value={tclass2} onChange={class2set} id="tclass2"/><br/>
+    <input type="number" value={tclass2} onChange={class2set} id="tclass2"/><br/>
+    {alertMessage}
 
     <button onClick={calci}>Submit</button><br/>
     <h3>Attendance percentage: </h3>

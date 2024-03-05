@@ -1,3 +1,4 @@
+/* CSS for the navbar */
 .navbar {
     font-family: Arial, sans-serif;
     max-width: 400px;
@@ -9,7 +10,8 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-input[type="text"], button {
+/* CSS for number input and button */
+input[type="number"], button {
     margin-bottom: 10px;
     padding: 8px;
     width: calc(100% - 16px);
@@ -18,6 +20,19 @@ input[type="text"], button {
     border-radius: 5px;
 }
 
+/* CSS for text input and button (uncomment if needed) */
+/*
+input[type="text"], button {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: calc(100% - 16px);
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+*/
+
+/* CSS for button */
 button {
     background-color: #4CAF50;
     color: white;
@@ -29,10 +44,12 @@ button:hover {
     background-color: #45a049;
 }
 
+/* CSS for headings */
 h3 {
     margin-top: 20px;
 }
 
+/* CSS for additional info */
 i {
     color: #888;
 }
@@ -52,6 +69,7 @@ i {
         max-width: 60%;
     }
 }
+
 /* CSS for center-aligning the copyright notice */
 .copyright {
     display: block;
