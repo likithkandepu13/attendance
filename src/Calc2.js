@@ -91,7 +91,7 @@ const Calc2 = () => {
 
     return (
         <div className="navbar">
-            <h1 style={{ textAlign: "center", fontFamily: "Arial, sans-serif" }}>KLU Attendance Calculator</h1>
+            <h1 style={{ textAlign: "center", fontFamily: "Arial, sans-serif" }}>L-T-P-S Calculator</h1>
             <h4 style={{ textAlign: "center", fontFamily: "Arial, sans-serif" }}>
                 Please input the following details to obtain your overall attendance for a specific subject.
             </h4>

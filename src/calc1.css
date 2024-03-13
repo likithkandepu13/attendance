@@ -34,15 +34,22 @@ input[type="text"], button {
 
 /* CSS for button */
 button {
-    background-color: #4CAF50;
-    color: white;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #337ab7; /* Changed to blue */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #45a049;
-}
+  }
+  
+  button:hover {
+    background-color: #2e6da4; /* Changed to darker shade of blue */
+  }
+  
+  
 
 /* CSS for headings */
 h3 {

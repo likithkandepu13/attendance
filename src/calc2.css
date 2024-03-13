@@ -22,7 +22,7 @@ button {
   display: block;
   width: 100%;
   padding: 10px;
-  background-color: #4CAF50; /* Changed to green */
+  background-color: #337ab7; /* Changed to blue */
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -31,8 +31,9 @@ button {
 }
 
 button:hover {
-  background-color: #45a049; /* Changed to darker shade of green */
+  background-color: #2e6da4; /* Changed to darker shade of blue */
 }
+
 
 h3 {
   margin-top: 20px;

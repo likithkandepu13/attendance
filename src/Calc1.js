@@ -41,7 +41,7 @@ const Calc1 = () => {
 
     return (
         <div className="navbar">
-            <h1 style={{ textAlign: 'center', fontFamily: 'Arial, sans-serif' }}>KLU Attendance Calculator</h1>
+            <h1 style={{ textAlign: 'center', fontFamily: 'Arial, sans-serif' }}> Absent Calculator</h1>
             <label htmlFor="tclass1">Please enter the total number of classes :</label>
             <input type="number" value={tclass1} onChange={class1set} id="tclass1" />
             <br />
