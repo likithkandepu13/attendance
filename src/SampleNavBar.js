@@ -14,7 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/School';
 
-const pages = [{ label:'Attendance by L-T-P-S',path:'/calbyltps'},{  label:'Attendance When Absent', path :'/total'},{ label:' Subject Attendance', path:'/calc3'} ];
+const pages = [{ label: 'Home', path: '/' },{ label:'Attendance by L-T-P-S',path:'/calbyltps'},{  label:'Attendance When Absent', path :'/total'},{ label:' Subject Attendance', path:'/calc3'} ];
 const settings = [{ label:'Attendance by L-T-P-S',path:'/calbyltps'},{  label:'Attendance When Absent', path :'/total'},{ label:' Subject Attendance', path:'/calc3'} ];
 
 function ResponsiveAppBar() {

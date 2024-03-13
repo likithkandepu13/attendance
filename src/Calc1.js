@@ -26,7 +26,8 @@ const Calc1 = () => {
     };
 
     const newatp = () => {
-        const sum = ((parseInt(tclass2) - parseInt(classes1)) / parseInt(tclass1)) * 100;
+        
+        const sum = ((parseInt(tclass2)) / (parseInt(tclass1) + parseInt(classes1))) * 100;
         setPap(Math.round(sum));
     };
 
@@ -36,7 +37,7 @@ const Calc1 = () => {
     }
     let alertMessage1 = null;
     if (parseInt(tclass2) < parseInt(classes1)) {
-        alertMessage1 = <div style={{color:"red"}}> (Absent classes is Less than the attended)</div>;
+        alertMessage1 = <div style={{color:"red"}}> (Attended classes is Less than the attended)</div>;
     }
 
     return (

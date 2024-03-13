@@ -21,7 +21,7 @@ Select "Calculate Total Attendance by L-T-P-S" to initiate the computation of ag
 
    <i>
 
-   To calculate your attendance when absent, simply click on "Calculate Your Attendance When Absent.".</i><br/>
+   To calculate your attendance when absent, simply click on "Calculate  When Absent.".</i><br/>
 
     <br/>
     <i>If you find any bugs in the application, kindly reach me in the issues in my github profile </i>

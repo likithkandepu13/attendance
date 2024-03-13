@@ -11,7 +11,6 @@ function App() {
   <h3 style={{color: '#286090', display: 'inline-block', margin: '0'}}>-KLU</h3>
 </div>
 
-
       <Router>
         <NavBar/>
         {/* <ResponsiveAppBar/> */}
