@@ -11,7 +11,8 @@ const NavBar = () => {
         <div className="navbar2">
             <ResponsiveAppBar />
             <Routes>
-                <Route path="/" element={<Navigate to="/home" />} /> {/* Redirect from "/" to "/home" */}
+            <Route path="/" element={<Navigate to="/home" />} /> {/* Redirect from "/" to "/home" */}
+                <Route path="/attendance" element={<Navigate to="/home" />} /> {/* Redirect from "/" to "/home" */}
                 <Route path="/home" element={<Home />} />
                 <Route path="/total" element={<Calc1 />} />
                 <Route path="/calbyltps" element={<Calc2 />} />

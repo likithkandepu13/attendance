@@ -8,14 +8,22 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/School';
+import SchoolIcon from '@mui/icons-material/School'; // Import the study symbol icon
 
-const pages = [{ label: 'Home', path: '/' },{ label:'Attendance by L-T-P-S',path:'/calbyltps'},{  label:'Attendance When Absent', path :'/total'},{ label:' Subject Attendance', path:'/calc3'} ];
-const settings = [{ label:'Attendance by L-T-P-S',path:'/calbyltps'},{  label:'Attendance When Absent', path :'/total'},{ label:' Subject Attendance', path:'/calc3'} ];
+const pages = [
+  { label: 'Home', path: '/' },
+  { label: 'Attendance by L-T-P-S', path: '/calbyltps' },
+  { label: 'Attendance When Absent', path: '/total' },
+  { label: 'Subject Attendance', path: '/calc3' }
+];
+const settings = [
+  { label: 'Attendance by L-T-P-S', path: '/calbyltps' },
+  { label: 'Attendance When Absent', path: '/total' },
+  { label: 'Subject Attendance', path: '/calc3' }
+];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -40,12 +48,12 @@ function ResponsiveAppBar() {
     <AppBar position="static" sx={{ backgroundColor: '#a51c24' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <SchoolIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> {/* Use the study symbol icon */}
           <Typography
             variant="subtitle1"
             noWrap
-            component={Link} // Use Link instead of a tag
-            to="/" // Specify the route to navigate to
+            component={Link}
+            to="/"
             sx={{
               mr: 1,
               display: { xs: 'none', md: 'flex' },
@@ -89,7 +97,7 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.path} component={Link} to={page.path} onClick={handleCloseNavMenu}> {/* Use Link instead of MenuItem */}
+                <MenuItem key={page.path} component={Link} to={page.path} onClick={handleCloseNavMenu}>
                   <Typography variant="subtitle2" textAlign="center">
                     {page.label}
                   </Typography>
@@ -97,12 +105,12 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <SchoolIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
-            component={Link} // Use Link instead of a tag
-            to="/" // Specify the route to navigate to
+            component={Link}
+            to="/"
             sx={{
               mr: 1,
               display: { xs: 'flex', md: 'none' },
@@ -114,14 +122,14 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-          Attendance Calculator
+            Let's Calculate
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page.path}
-                component={Link} // Use Link instead of Button
-                to={page.path} // Specify the route to navigate to
+                component={Link}
+                to={page.path}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 1, color: 'white', display: 'block' }}
               >
@@ -133,7 +141,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <SchoolIcon /> {/* Use the study symbol icon */}
               </IconButton>
             </Tooltip>
             <Menu
@@ -153,7 +161,7 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting.path} component={Link} to={setting.path} onClick={handleCloseUserMenu}> {/* Use Link instead of MenuItem */}
+                <MenuItem key={setting.path} component={Link} to={setting.path} onClick={handleCloseUserMenu}>
                   <Typography variant="subtitle2" textAlign="center">
                     {setting.label}
                   </Typography>
