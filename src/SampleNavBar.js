@@ -45,7 +45,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: '#a51c24' }}>
+    <AppBar position="sticky" sx={{ backgroundColor: '#a51c24' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <SchoolIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> {/* Use the study symbol icon */}
@@ -122,7 +122,7 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            Let's Calculate
+          Let's Cal!
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
