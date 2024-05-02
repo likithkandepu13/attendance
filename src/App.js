@@ -2,7 +2,6 @@
 // import './App.css';
 import { BrowserRouter as Router } from "react-router-dom";
 import NavBar from "./NavBar";
-import ResponsiveAppBar from "./SampleNavBar";
 function App() {
   return (
     <div className="App">
@@ -13,7 +12,6 @@ function App() {
 
       <Router>
         <NavBar/>
-        {/* <ResponsiveAppBar/> */}
       </Router>
       <div>
  
