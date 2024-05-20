@@ -3,74 +3,37 @@ This online tool is designed for monitoring student attendance at KLU. It featur
 
 "The KLU Attendance Calculator is a web application developed using React and CSS, employing the concept of Hooks to assign values to an object and display them."
 
+The Attendance Calculator for University Students is a React-based application developed to help students at KL University efficiently manage their attendance. This tool calculates attendance percentages, monitors potential decreases, and tracks attendance patterns according to the LTPS (Lecture, Tutorial, Practical, Skill) structure. It empowers students to take proactive measures to avoid falling below the required attendance threshold, reducing the risk of detainment.
 
-# Getting Started with Create React App
+Features
+User-Friendly Interface: Designed with an intuitive layout to ensure ease of use.
+Attendance Calculation: Calculates attendance percentages based on input data.
+Trend Monitoring: Monitors and alerts users about potential decreases in attendance.
+Pattern Tracking: Tracks attendance patterns to provide insights and help students manage their attendance effectively.
+React Hooks: Utilizes React Hooks for state management and functional components.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Getting Started:
 
-## Available Scripts
+Prerequisites
+Node.js (v12 or higher)
+npm (v6 or higher)
 
-In the project directory, you can run:
 
-### `npm start`
+Usage: 
+Input Attendance Data: Enter the total number of lectures, tutorials, practicals, and seminars attended.
+Calculate Attendance: The app will calculate your attendance percentage and display it.
+Monitor Trends: Check for any warnings regarding potential decreases in your attendance.
+Track Patterns: View attendance patterns over time to make informed decisions about attending classes.
+Contributing
+Contributions are welcome! Please follow these steps to contribute:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Fork the repository.
+Create a new branch for your feature or bug fix.
+Commit your changes and push them to your branch.
+Submit a pull request with a detailed description of your changes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Contact
+For any questions or suggestions, please open an issue on GitHub
