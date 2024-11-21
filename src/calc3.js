@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useDrag } from '@use-gesture/react';
+import { FaUndo } from 'react-icons/fa';
 import './calc2.css';
 
 const Calc3 = () => {
@@ -9,6 +11,29 @@ const Calc3 = () => {
     const [classesNeeded85, setClassesNeeded85] = useState(null);
     const [classesNeeded65, setClassesNeeded65] = useState(null);
     const [error, setError] = useState('');
+
+    const bind = useDrag(({ movement: [mx], direction: [dx], velocity: [vx], tap }) => {
+        if (tap) return;
+        
+        if (Math.abs(mx) > 50 || Math.abs(vx) > 0.5) {
+            if (dx > 0) {
+                resetForm();
+            }
+        }
+    }, {
+        axis: 'x',
+        rubberband: true,
+        threshold: 5
+    });
+
+    const resetForm = () => {
+        setTotalClasses('');
+        setAttendedClasses('');
+        setAttendancePercentage(null);
+        setClassesNeeded85(null);
+        setClassesNeeded65(null);
+        setError('');
+    };
 
     const calculateClassesNeeded = (current, total, targetPercentage) => {
         const currentAttended = parseInt(current);
@@ -66,6 +91,7 @@ const Calc3 = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            {...bind()}
         >
             <div className="header">
                 <motion.h1
@@ -78,7 +104,10 @@ const Calc3 = () => {
             </div>
 
             <div className="input-grid">
-                <div className="input-group">
+                <motion.div 
+                    className="input-group"
+                    whileHover={{ scale: 1.02 }}
+                >
                     <label>Total Number of Classes</label>
                     <input
                         type="number"
@@ -86,9 +115,12 @@ const Calc3 = () => {
                         onChange={(e) => setTotalClasses(e.target.value)}
                         placeholder="Enter total classes"
                     />
-                </div>
+                </motion.div>
 
-                <div className="input-group">
+                <motion.div 
+                    className="input-group"
+                    whileHover={{ scale: 1.02 }}
+                >
                     <label>Classes Attended</label>
                     <input
                         type="number"
@@ -96,12 +128,25 @@ const Calc3 = () => {
                         onChange={(e) => setAttendedClasses(e.target.value)}
                         placeholder="Enter attended classes"
                     />
-                </div>
+                </motion.div>
 
                 <div className="button-group">
-                    <button className="calculate-btn" onClick={calculateAttendance}>
+                    <motion.button 
+                        className="calculate-btn" 
+                        onClick={calculateAttendance}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
                         Calculate Attendance
-                    </button>
+                    </motion.button>
+                    <motion.button 
+                        className="reset-btn" 
+                        onClick={resetForm}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <FaUndo /> Reset
+                    </motion.button>
                 </div>
             </div>
 
