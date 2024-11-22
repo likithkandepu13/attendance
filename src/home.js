@@ -78,6 +78,9 @@ const Home = () => {
                         Transform your academic journey with our intelligent attendance tracking system. 
                         Stay on top of your attendance requirements with real-time insights and smart predictions.
                     </p>
+                    <p className="copyright">
+                            © 2024 KLU Attendance Calculator | Crafted with ❤️ by Likith Kandepu (2200030837)
+                        </p>
                     <div className="hero-cta">
                         <Link to="/calbyltps" className="primary-button">
                             Calculate Now

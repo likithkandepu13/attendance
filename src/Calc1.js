@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDrag } from '@use-gesture/react';
-import { FaUndo } from 'react-icons/fa';
+import { FaUndo, FaCalculator, FaChartLine } from 'react-icons/fa';
 import './calc2.css';
 
 const Calc1 = () => {
     const [totalClasses, setTotalClasses] = useState('');
     const [attendedClasses, setAttendedClasses] = useState('');
-    const [absentClasses, setAbsentClasses] = useState('');
+    const [projectedAbsences, setProjectedAbsences] = useState('');
     const [currentPercentage, setCurrentPercentage] = useState(null);
-    const [updatedPercentage, setUpdatedPercentage] = useState(null);
+    const [projectedPercentage, setProjectedPercentage] = useState(null);
     const [classesNeeded85, setClassesNeeded85] = useState(null);
     const [classesNeeded65, setClassesNeeded65] = useState(null);
     const [error, setError] = useState('');
 
     const bind = useDrag(({ movement: [mx], direction: [dx], velocity: [vx], tap }) => {
         if (tap) return;
-        
         if (Math.abs(mx) > 50 || Math.abs(vx) > 0.5) {
             if (dx > 0) {
                 resetForm();
@@ -31,9 +30,9 @@ const Calc1 = () => {
     const resetForm = () => {
         setTotalClasses('');
         setAttendedClasses('');
-        setAbsentClasses('');
+        setProjectedAbsences('');
         setCurrentPercentage(null);
-        setUpdatedPercentage(null);
+        setProjectedPercentage(null);
         setClassesNeeded85(null);
         setClassesNeeded65(null);
         setError('');
@@ -75,23 +74,24 @@ const Calc1 = () => {
         
         setClassesNeeded85(calculateClassesNeeded(attended, total, 85));
         setClassesNeeded65(calculateClassesNeeded(attended, total, 65));
+
+        if (projectedAbsences) {
+            calculateProjectedAttendance();
+        }
     };
 
-    const calculateUpdatedAttendance = () => {
-        if (!absentClasses) return;
-
+    const calculateProjectedAttendance = () => {
         const total = parseInt(totalClasses);
         const attended = parseInt(attendedClasses);
-        const absent = parseInt(absentClasses);
+        const absences = parseInt(projectedAbsences);
 
-        if (absent > attended) {
-            setError('Absent classes cannot be more than attended classes');
+        if (absences > attended) {
+            setError('Projected absences cannot be more than attended classes');
             return;
         }
 
-        setError('');
-        const newPercentage = ((attended - absent) / total) * 100;
-        setUpdatedPercentage(Math.round(newPercentage));
+        const projected = ((attended - absences) / total) * 100;
+        setProjectedPercentage(Math.round(projected));
     };
 
     const getPercentageClass = (percentage) => {
@@ -114,118 +114,131 @@ const Calc1 = () => {
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.5 }}
                 >
-                    Absence Impact Calculator
+                    <FaCalculator className="header-icon" /> Attendance Calculator
                 </motion.h1>
+                <p className="header-subtitle">Track and project your attendance easily</p>
             </div>
 
-            <div className="input-grid">
+            <div className="calculator-grid">
                 <motion.div 
-                    className="input-group"
-                    whileHover={{ scale: 1.02 }}
+                    className="input-section"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
                 >
-                    <label>Total Classes</label>
-                    <input
-                        type="number"
-                        value={totalClasses}
-                        onChange={(e) => setTotalClasses(e.target.value)}
-                        placeholder="Enter total classes"
-                    />
-                </motion.div>
+                    <div className="input-group">
+                        <label>Total Classes</label>
+                        <input
+                            type="number"
+                            value={totalClasses}
+                            onChange={(e) => setTotalClasses(e.target.value)}
+                            placeholder="Enter total classes"
+                            min="0"
+                        />
+                    </div>
 
-                <motion.div 
-                    className="input-group"
-                    whileHover={{ scale: 1.02 }}
-                >
-                    <label>Attended Classes</label>
-                    <input
-                        type="number"
-                        value={attendedClasses}
-                        onChange={(e) => setAttendedClasses(e.target.value)}
-                        placeholder="Enter attended classes"
-                    />
+                    <div className="input-group">
+                        <label>Attended Classes</label>
+                        <input
+                            type="number"
+                            value={attendedClasses}
+                            onChange={(e) => setAttendedClasses(e.target.value)}
+                            placeholder="Enter attended classes"
+                            min="0"
+                        />
+                    </div>
+
+                    <div className="input-group">
+                        <label>Projected Absences</label>
+                        <input
+                            type="number"
+                            value={projectedAbsences}
+                            onChange={(e) => {
+                                setProjectedAbsences(e.target.value);
+                                if (currentPercentage) calculateProjectedAttendance();
+                            }}
+                            placeholder="Enter planned absences"
+                            min="0"
+                        />
+                    </div>
                 </motion.div>
 
                 <div className="button-group">
                     <motion.button 
-                        className="calculate-btn" 
+                        className="calculate-btn"
                         onClick={calculateAttendance}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
-                        Calculate Attendance
+                        <FaChartLine /> Calculate
                     </motion.button>
                     <motion.button 
-                        className="reset-btn" 
+                        className="reset-btn"
                         onClick={resetForm}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                     >
                         <FaUndo /> Reset
                     </motion.button>
                 </div>
-            </div>
 
-            <AnimatePresence>
-                {error && (
+                <AnimatePresence>
+                    {error && (
+                        <motion.div 
+                            className="error-message"
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                        >
+                            {error}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                {currentPercentage !== null && (
                     <motion.div 
-                        className="error-message"
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
+                        className="results-section"
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.3 }}
                     >
-                        {error}
+                        <div className={`percentage-display ${getPercentageClass(currentPercentage)}`}>
+                            Current Attendance: {currentPercentage}%
+                        </div>
+
+                        {projectedPercentage !== null && (
+                            <div className={`percentage-display ${getPercentageClass(projectedPercentage)}`}>
+                                Projected Attendance: {projectedPercentage}%
+                            </div>
+                        )}
+
+                        <div className="recommendation-card">
+                            <h3>Status & Recommendations</h3>
+                            <div className="recommendation-text">
+                                {currentPercentage >= 85 ? (
+                                    "Excellent attendance! Keep it up! 🌟"
+                                ) : currentPercentage >= 65 ? (
+                                    "Good attendance, but room for improvement! 📈"
+                                ) : (
+                                    "Attendance needs attention! ⚠️"
+                                )}
+                            </div>
+                        </div>
+
+                        {currentPercentage < 85 && (
+                            <div className="improvement-card">
+                                <h3>Required Classes</h3>
+                                <div className="improvement-text">
+                                    <p>For 85%: Need {classesNeeded85} more classes</p>
+                                    {currentPercentage < 65 && (
+                                        <p>For 65%: Need {classesNeeded65} more classes</p>
+                                    )}
+                                </div>
+                            </div>
+                        )}
                     </motion.div>
                 )}
-            </AnimatePresence>
-
-            {currentPercentage !== null && (
-                <motion.div 
-                    className="results-container"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                >
-                    <div className={`percentage-display ${getPercentageClass(currentPercentage)}`}>
-                        Current Attendance: {currentPercentage}%
-                    </div>
-
-                    <div className="recommendation-card">
-                        <h3>Attendance Goals</h3>
-                        {currentPercentage < 85 && (
-                            <div className="recommendation-text">
-                                To reach 85%: Need to attend {classesNeeded85} more classes
-                            </div>
-                        )}
-                        {currentPercentage < 65 && (
-                            <div className="recommendation-text">
-                                To reach 65%: Need to attend {classesNeeded65} more classes
-                            </div>
-                        )}
-                    </div>
-
-                    <motion.div 
-                        className="input-group"
-                        whileHover={{ scale: 1.02 }}
-                        style={{ marginTop: '1.5rem' }}
-                    >
-                        <label>Planning to Skip Classes?</label>
-                        <input
-                            type="number"
-                            value={absentClasses}
-                            onChange={(e) => {
-                                setAbsentClasses(e.target.value);
-                                calculateUpdatedAttendance();
-                            }}
-                            placeholder="Enter classes you'll miss"
-                        />
-                    </motion.div>
-
-                    {updatedPercentage !== null && (
-                        <div className={`percentage-display ${getPercentageClass(updatedPercentage)}`}>
-                            Projected Attendance: {updatedPercentage}%
-                        </div>
-                    )}
-                </motion.div>
-            )}
+            </div>
 
             <div className="copyright">
                 © 2024, 2200030837, Likith Kandepu
