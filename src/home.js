@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './navbar.css';
+import cngts from './cngts_image.jpg';
 
 const Home = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -13,20 +14,19 @@ const Home = () => {
         const handleScroll = () => {
             const totalScroll = document.documentElement.scrollTop;
             const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scroll = `${totalScroll / windowHeight * 100}`;
+            const scroll = `${(totalScroll / windowHeight) * 100}`;
             setScrollProgress(scroll);
         };
-
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     const containerVariants = {
         hidden: { opacity: 0, y: 20 },
-        visible: { 
-            opacity: 1, 
+        visible: {
+            opacity: 1,
             y: 0,
-            transition: { 
+            transition: {
                 duration: 0.6,
                 when: "beforeChildren",
                 staggerChildren: 0.2
@@ -36,8 +36,8 @@ const Home = () => {
 
     const itemVariants = {
         hidden: { opacity: 0, y: 20 },
-        visible: { 
-            opacity: 1, 
+        visible: {
+            opacity: 1,
             y: 0,
             transition: { duration: 0.6 }
         }
@@ -62,13 +62,12 @@ const Home = () => {
     };
 
     return (
-        <motion.div 
+        <motion.div
             className="hero-container"
             initial="hidden"
             animate={isVisible ? "visible" : "hidden"}
             variants={containerVariants}
         >
-            {/* Progress Bar */}
             <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
 
             <div className="hero-content">
@@ -79,8 +78,8 @@ const Home = () => {
                         Stay on top of your attendance requirements with real-time insights and smart predictions.
                     </p>
                     <p className="copyright">
-                            © 2024 KLU Attendance Calculator | Crafted with ❤️ by Likith Kandepu (2200030837)
-                        </p>
+                        © 2024 KLU Attendance Calculator | Crafted with ❤️ by Likith Kandepu (2200030837)
+                    </p>
                     <div className="hero-cta">
                         <Link to="/calbyltps" className="primary-button">
                             Calculate Now
@@ -110,7 +109,7 @@ const Home = () => {
                     </div>
                     <div className="stats-grid">
                         {stats[activeTab].map((stat, index) => (
-                            <motion.div 
+                            <motion.div
                                 key={index}
                                 className="stat-card"
                                 initial={{ opacity: 0, scale: 0.9 }}
@@ -186,6 +185,50 @@ const Home = () => {
                     </div>
                 </motion.div>
 
+                {/* Recognition Section Updated */}
+                <motion.div 
+                    className="recognition-section" 
+                    variants={itemVariants}
+                    style={{
+                        textAlign: 'center',
+                        padding: '2rem 1rem',
+                        marginTop: '4rem',
+                        marginBottom: '4rem',
+                        background: '#f7f9fc',
+                        borderRadius: '16px',
+                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)'
+                    }}
+                >
+                    <img 
+                        src={cngts} 
+                        alt="Recognition by KL University" 
+                        style={{
+                            width: '100%',
+                            maxWidth: '360px',
+                            height: 'auto',
+                            borderRadius: '12px',
+                            marginBottom: '1rem',
+                            boxShadow: '0 6px 18px rgba(0,0,0,0.15)'
+                        }} 
+                    />
+                    <h3 style={{ fontSize: '1.5rem', color: '#2b2d42', marginBottom: '0.5rem' }}>
+                        Grateful Recognition
+                    </h3>
+                    <p 
+                        style={{
+                            fontSize: '1.1rem',
+                            maxWidth: '600px',
+                            margin: '0 auto',
+                            lineHeight: '1.6',
+                            color: '#444'
+                        }}
+                    >
+                        I extend my heartfelt thanks to <strong>KL University</strong> and the <strong>CSE Department </strong> 
+                        for acknowledging my initiative. Your recognition motivates me to continue building solutions 
+                        that simplify student lives.
+                    </p>
+                </motion.div>
+
                 <motion.footer className="page-footer" variants={itemVariants}>
                     <div className="footer-content">
                         <div className="footer-section">
@@ -214,6 +257,6 @@ const Home = () => {
             </div>
         </motion.div>
     );
-}
+};
 
 export default Home;
