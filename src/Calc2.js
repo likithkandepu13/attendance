@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDrag } from '@use-gesture/react';
-import { FaDownload, FaTrophy, FaUndo, FaHistory, FaChevronLeft, FaChevronRight, FaStar } from 'react-icons/fa';
-import Confetti from 'react-confetti';
+import { FaDownload, FaTrophy, FaUndo, FaHistory, FaChevronLeft, FaChevronRight, FaStar, FaCheckCircle } from 'react-icons/fa';
 import jsPDF from 'jspdf';
 import './calc2.css';
 
@@ -280,6 +279,16 @@ const Calc2 = () => {
         }, ...prev]);
     };
 
+    // Ref for result container
+    const resultRef = useRef(null);
+
+    // Scroll to result when result is set
+    useEffect(() => {
+        if (attendancePercentage && analysis && resultRef.current) {
+            resultRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }, [attendancePercentage, analysis]);
+
     return (
         <motion.div 
             className="calculator-container"
@@ -462,25 +471,22 @@ const Calc2 = () => {
                 {attendancePercentage && analysis && (
                     <motion.div 
                         className="results-container"
+                        ref={resultRef}
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <Confetti
-                            {...getConfettiConfig(parseFloat(attendancePercentage))}
-                        />
-
                         <motion.div 
                             className={`attendance-display ${
                                 parseFloat(attendancePercentage) >= 85 ? 'attendance-excellent' :
                                 parseFloat(attendancePercentage) >= 75 ? 'attendance-good' :
                                 'attendance-warning'
                             }`}
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
                             transition={{ type: "spring", stiffness: 200, damping: 20 }}
                         >
-                            <FaTrophy style={{ marginRight: '10px' }} />
+                            <FaCheckCircle style={{ marginRight: '10px', color: '#22c55e', fontSize: '2rem', verticalAlign: 'middle' }} />
                             {subject && <span className="subject-name">{subject}: </span>}
                             {attendancePercentage}%
                         </motion.div>
@@ -547,6 +553,70 @@ const Calc2 = () => {
                     </motion.div>
                 )}
             </AnimatePresence>
+
+            {/* KL University ERP Quick Access */}
+            <motion.div 
+                className="erp-quick-access"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+            >
+                <div className="erp-header">
+                    <h3>📊 KL University ERP - Quick Access</h3>
+                    <p>Access your attendance data from the official KL University ERP system</p>
+                </div>
+                <div className="erp-content">
+                    <div className="erp-info">
+                        <div className="erp-icon">🎓</div>
+                        <div className="erp-text">
+                            <h4>How to use:</h4>
+                            <ol>
+                                <li>Click "Open KLU ERP" below</li>
+                                <li>Login to your student account</li>
+                                <li>Navigate to Attendance section</li>
+                                <li>Copy your attendance percentages</li>
+                                <li>Return here and enter the data</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div className="erp-actions">
+                        <a 
+                            href="https://newerp.kluniversity.in/" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="erp-primary-btn"
+                        >
+                            🔗 Open KLU ERP
+                        </a>
+                        <div className="erp-secondary-actions">
+                            <button 
+                                className="erp-secondary-btn"
+                                onClick={() => {
+                                    const newWindow = window.open('https://newerp.kluniversity.in/', '_blank');
+                                    if (newWindow) {
+                                        newWindow.focus();
+                                    }
+                                }}
+                            >
+                                📱 Open in New Window
+                            </button>
+                            <button 
+                                className="erp-secondary-btn"
+                                onClick={() => {
+                                    // Copy the URL to clipboard
+                                    navigator.clipboard.writeText('https://newerp.kluniversity.in/');
+                                    alert('KLU ERP URL copied to clipboard!');
+                                }}
+                            >
+                                📋 Copy URL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div className="erp-footer">
+                    <p>💡 <strong>Pro Tip:</strong> Keep the ERP tab open while using this calculator for quick reference</p>
+                </div>
+            </motion.div>
 
             <motion.div 
                 className="copyright"

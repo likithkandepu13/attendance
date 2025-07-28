@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useDrag } from '@use-gesture/react';
 import { FaUndo, FaCalculator, FaChartLine } from 'react-icons/fa';
@@ -26,6 +26,18 @@ const Calc1 = () => {
         rubberband: true,
         threshold: 5
     });
+
+    // Watch for changes in projected absences and trigger calculation
+    useEffect(() => {
+        if (currentPercentage !== null && totalClasses && attendedClasses && projectedAbsences) {
+            const absences = parseInt(projectedAbsences);
+            if (absences > 0) {
+                calculateProjectedAttendance();
+            } else {
+                setProjectedPercentage(null);
+            }
+        }
+    }, [projectedAbsences, currentPercentage, totalClasses, attendedClasses]);
 
     const resetForm = () => {
         setTotalClasses('');
@@ -75,9 +87,23 @@ const Calc1 = () => {
         setClassesNeeded85(calculateClassesNeeded(attended, total, 85));
         setClassesNeeded65(calculateClassesNeeded(attended, total, 65));
 
-        if (projectedAbsences) {
+        // Always calculate projected attendance if projected absences are entered
+        if (projectedAbsences && projectedAbsences > 0) {
             calculateProjectedAttendance();
+        } else {
+            setProjectedPercentage(null);
         }
+
+        // Scroll to results after a short delay to allow state updates
+        setTimeout(() => {
+            const resultsSection = document.querySelector('.results-section');
+            if (resultsSection) {
+                resultsSection.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }
+        }, 100);
     };
 
     const calculateProjectedAttendance = () => {
@@ -85,13 +111,28 @@ const Calc1 = () => {
         const attended = parseInt(attendedClasses);
         const absences = parseInt(projectedAbsences);
 
-        if (absences > attended) {
-            setError('Projected absences cannot be more than attended classes');
+        // Validate inputs
+        if (!total || !attended || !absences) {
+            setProjectedPercentage(null);
             return;
         }
 
+        if (absences > attended) {
+            setError('Projected absences cannot be more than attended classes');
+            setProjectedPercentage(null);
+            return;
+        }
+
+        if (absences < 0) {
+            setError('Projected absences cannot be negative');
+            setProjectedPercentage(null);
+            return;
+        }
+
+        setError(''); // Clear any previous errors
         const projected = ((attended - absences) / total) * 100;
-        setProjectedPercentage(Math.round(projected));
+        const roundedProjected = Math.round(projected);
+        setProjectedPercentage(roundedProjected);
     };
 
     const getPercentageClass = (percentage) => {
@@ -153,10 +194,7 @@ const Calc1 = () => {
                         <input
                             type="number"
                             value={projectedAbsences}
-                            onChange={(e) => {
-                                setProjectedAbsences(e.target.value);
-                                if (currentPercentage) calculateProjectedAttendance();
-                            }}
+                            onChange={(e) => setProjectedAbsences(e.target.value)}
                             placeholder="Enter planned absences"
                             min="0"
                         />
@@ -207,9 +245,15 @@ const Calc1 = () => {
                         </div>
 
                         {projectedPercentage !== null && (
-                            <div className={`percentage-display ${getPercentageClass(projectedPercentage)}`}>
-                                Projected Attendance: {projectedPercentage}%
-                            </div>
+                            <motion.div 
+                                className={`percentage-display ${getPercentageClass(projectedPercentage)} projected`}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.3 }}
+                            >
+                                <div className="projected-label">📊 Projected Attendance (with {projectedAbsences} absences):</div>
+                                <div className="projected-value">{projectedPercentage}%</div>
+                            </motion.div>
                         )}
 
                         <div className="recommendation-card">
@@ -239,6 +283,72 @@ const Calc1 = () => {
                     </motion.div>
                 )}
             </div>
+
+            {/* ERP Quick Access Section */}
+            <motion.div 
+                className="erp-quick-access"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+            >
+                <div className="erp-header">
+                    <h3>📊 KL University ERP - Quick Access</h3>
+                    <p>Access your attendance data from the official KL University ERP system</p>
+                </div>
+                
+                <div className="erp-content">
+                    <div className="erp-info">
+                        <div className="erp-icon">🎓</div>
+                        <div className="erp-text">
+                            <h4>How to use:</h4>
+                            <ol>
+                                <li>Click "Open KLU ERP" below</li>
+                                <li>Login to your student account</li>
+                                <li>Navigate to Attendance section</li>
+                                <li>Copy your attendance percentages</li>
+                                <li>Return here and enter the data</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div className="erp-actions">
+                        <a 
+                            href="https://erp.kluniversity.in"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="erp-primary-btn"
+                        >
+                            🔗 Open KLU ERP
+                        </a>
+                        <div className="erp-secondary-actions">
+                            <button 
+                                className="erp-secondary-btn"
+                                onClick={() => {
+                                    const newWindow = window.open('https://erp.kluniversity.in', '_blank');
+                                    if (newWindow) {
+                                        newWindow.focus();
+                                    }
+                                }}
+                            >
+                                📱 Open in New Window
+                            </button>
+                            <button 
+                                className="erp-secondary-btn"
+                                onClick={() => {
+                                    navigator.clipboard.writeText('https://erp.kluniversity.in');
+                                    alert('ERP URL copied to clipboard! 📋');
+                                }}
+                            >
+                                📋 Copy URL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div className="erp-footer">
+                    <p>💡 <strong>Pro Tip:</strong> Keep the ERP tab open while using this calculator for quick reference</p>
+                </div>
+            </motion.div>
 
             <div className="copyright">
                 © 2024, 2200030837, Likith Kandepu

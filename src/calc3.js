@@ -71,6 +71,17 @@ const Calc3 = () => {
         
         setClassesNeeded85(calculateClassesNeeded(attended, total, 85));
         setClassesNeeded65(calculateClassesNeeded(attended, total, 65));
+
+        // Scroll to results after a short delay to allow state updates
+        setTimeout(() => {
+            const resultsContainer = document.querySelector('.results-container');
+            if (resultsContainer) {
+                resultsContainer.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }
+        }, 100);
     };
 
     const getPercentageClass = (percentage) => {
@@ -193,6 +204,72 @@ const Calc3 = () => {
                     )}
                 </motion.div>
             )}
+
+            {/* ERP Quick Access Section */}
+            <motion.div 
+                className="erp-quick-access"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+            >
+                <div className="erp-header">
+                    <h3>📊 KL University ERP - Quick Access</h3>
+                    <p>Access your attendance data from the official KL University ERP system</p>
+                </div>
+                
+                <div className="erp-content">
+                    <div className="erp-info">
+                        <div className="erp-icon">🎓</div>
+                        <div className="erp-text">
+                            <h4>How to use:</h4>
+                            <ol>
+                                <li>Click "Open KLU ERP" below</li>
+                                <li>Login to your student account</li>
+                                <li>Navigate to Attendance section</li>
+                                <li>Copy your attendance percentages</li>
+                                <li>Return here and enter the data</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div className="erp-actions">
+                        <a 
+                            href="https://erp.kluniversity.in"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="erp-primary-btn"
+                        >
+                            🔗 Open KLU ERP
+                        </a>
+                        <div className="erp-secondary-actions">
+                            <button 
+                                className="erp-secondary-btn"
+                                onClick={() => {
+                                    const newWindow = window.open('https://erp.kluniversity.in', '_blank');
+                                    if (newWindow) {
+                                        newWindow.focus();
+                                    }
+                                }}
+                            >
+                                📱 Open in New Window
+                            </button>
+                            <button 
+                                className="erp-secondary-btn"
+                                onClick={() => {
+                                    navigator.clipboard.writeText('https://erp.kluniversity.in');
+                                    alert('ERP URL copied to clipboard! 📋');
+                                }}
+                            >
+                                📋 Copy URL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div className="erp-footer">
+                    <p>💡 <strong>Pro Tip:</strong> Keep the ERP tab open while using this calculator for quick reference</p>
+                </div>
+            </motion.div>
 
             <div className="copyright">
                 © 2024, 2200030837, Likith Kandepu

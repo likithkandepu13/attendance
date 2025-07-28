@@ -90,3 +90,158 @@ i {
         max-width: 40%;
     }
 }
+
+/* ERP Quick Access Styles */
+.erp-quick-access {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #dee2e6;
+}
+
+.erp-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.erp-header h3 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.erp-header p {
+    color: #6c757d;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.erp-instructions {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.erp-instructions h4 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.erp-instructions ol {
+    color: #495057;
+    line-height: 1.6;
+    padding-left: 1.5rem;
+}
+
+.erp-instructions li {
+    margin-bottom: 0.5rem;
+}
+
+.erp-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.erp-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 140px;
+    justify-content: center;
+}
+
+.primary-erp {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.primary-erp:hover {
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+}
+
+.secondary-erp {
+    background: white;
+    color: #2563eb;
+    border: 2px solid #2563eb;
+}
+
+.secondary-erp:hover {
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.tertiary-erp {
+    background: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+}
+
+.tertiary-erp:hover {
+    background: #e9ecef;
+    color: #495057;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.erp-tip {
+    background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+    border-radius: 10px;
+    padding: 1rem;
+    border-left: 4px solid #ffc107;
+}
+
+.erp-tip p {
+    color: #856404;
+    font-weight: 500;
+    margin: 0;
+    text-align: center;
+}
+
+/* Responsive design for ERP section */
+@media (max-width: 768px) {
+    .erp-quick-access {
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    
+    .erp-actions {
+        flex-direction: column;
+    }
+    
+    .erp-button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .erp-header h3 {
+        font-size: 1.3rem;
+    }
+    
+    .erp-instructions {
+        padding: 1rem;
+    }
+}

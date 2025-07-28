@@ -73,19 +73,32 @@ function ResponsiveAppBar() {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ minHeight: { xs: '64px', md: '75px' } }}>
-          <SchoolIcon 
-            sx={{ 
-              display: { xs: 'none', md: 'flex' }, 
-              mr: 2,
-              fontSize: '2.2rem',
+          {/* Replace SchoolIcon with university logo for desktop */}
+          <img 
+            src="https://tse4.mm.bing.net/th/id/OIP.nqZNjUAlcOVmRBtqUNn4DwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" 
+            alt="University Logo" 
+            style={{
+              display: 'none',
+              marginRight: 16,
+              height: '2.2rem',
+              width: '2.2rem',
+              objectFit: 'contain',
               filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.2))',
               animation: 'float 3s ease-in-out infinite',
-              '@keyframes float': {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-5px)' }
-              }
-            }} 
+            }}
+            className="university-logo-desktop"
           />
+          <style>{`
+            @media (min-width: 900px) {
+              .university-logo-desktop {
+                display: inline-block !important;
+              }
+            }
+            @keyframes float {
+              0%, 100% { transform: translateY(0); }
+              50% { transform: translateY(-5px); }
+            }
+          `}</style>
           <Typography
             variant="h5"
             noWrap
@@ -179,14 +192,27 @@ function ResponsiveAppBar() {
             </Menu>
           </Box>
 
-          <SchoolIcon 
-            sx={{ 
-              display: { xs: 'flex', md: 'none' }, 
-              mr: 1, 
-              fontSize: '2rem',
-              filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.2))'
-            }} 
+          {/* Replace SchoolIcon with university logo for mobile */}
+          <img 
+            src="https://tse4.mm.bing.net/th/id/OIP.nqZNjUAlcOVmRBtqUNn4DwHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" 
+            alt="University Logo" 
+            style={{
+              display: 'flex',
+              marginRight: 8,
+              height: '2rem',
+              width: '2rem',
+              objectFit: 'contain',
+              filter: 'drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.2))',
+            }}
+            className="university-logo-mobile"
           />
+          <style>{`
+            @media (min-width: 900px) {
+              .university-logo-mobile {
+                display: none !important;
+              }
+            }
+          `}</style>
           <Typography
             variant="h6"
             noWrap
