@@ -234,7 +234,7 @@ const Calc3 = () => {
                     
                     <div className="erp-actions">
                         <a 
-                            href="https://erp.kluniversity.in"
+                            href="https://newerp.kluniversity.in/index.php"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="erp-primary-btn"
@@ -245,7 +245,7 @@ const Calc3 = () => {
                             <button 
                                 className="erp-secondary-btn"
                                 onClick={() => {
-                                    const newWindow = window.open('https://erp.kluniversity.in', '_blank');
+                                    const newWindow = window.open('https://newerp.kluniversity.in/index.php', '_blank');
                                     if (newWindow) {
                                         newWindow.focus();
                                     }
@@ -256,7 +256,7 @@ const Calc3 = () => {
                             <button 
                                 className="erp-secondary-btn"
                                 onClick={() => {
-                                    navigator.clipboard.writeText('https://erp.kluniversity.in');
+                                    navigator.clipboard.writeText('https://newerp.kluniversity.in/index.php');
                                     alert('ERP URL copied to clipboard! 📋');
                                 }}
                             >
