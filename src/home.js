@@ -7,7 +7,8 @@ const Home = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [activeTab, setActiveTab] = useState('daily');
     const [scrollProgress, setScrollProgress] = useState(0);
-    const [showRainWarning, setShowRainWarning] = useState(false);
+
+    
     const [currentWeather, setCurrentWeather] = useState(null);
     const [showNotesModal, setShowNotesModal] = useState(false);
     const [noteText, setNoteText] = useState('');
@@ -114,12 +115,12 @@ const Home = () => {
         const randomWeather = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
         setCurrentWeather(randomWeather);
         
-        // Show rain warning if rain chance is high
-        if (randomWeather.rainChance > 50) {
-            setShowRainWarning(true);
-            // Auto-hide warning after 10 seconds
-            setTimeout(() => setShowRainWarning(false), 10000);
-        }
+        // // Show rain warning if rain chance is high
+        // if (randomWeather.rainChance > 50) {
+        //     setShowRainWarning(true);
+        //     // Auto-hide warning after 10 seconds
+        //     setTimeout(() => setShowRainWarning(false), 10000);
+        // }
         
         return randomWeather;
     };
@@ -187,25 +188,25 @@ const Home = () => {
             variants={containerVariants}
         >
             {/* Rain Warning Banner */}
-            {showRainWarning && (
-                <motion.div 
-                    className="rain-warning-banner"
-                    initial={{ y: -100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -100, opacity: 0 }}
-                >
-                    <span className="rain-warning-icon">🌧️</span>
-                    <span className="rain-warning-text">
-                        ⚠️ Rain expected at KL University! Don't forget to bring your umbrella! ☔
-                    </span>
-                    <button 
-                        className="rain-warning-close"
-                        onClick={() => setShowRainWarning(false)}
-                    >
-                        ×
-                    </button>
-                </motion.div>
-            )}
+            // {showRainWarning && (
+            //     <motion.div 
+            //         className="rain-warning-banner"
+            //         initial={{ y: -100, opacity: 0 }}
+            //         animate={{ y: 0, opacity: 1 }}
+            //         exit={{ y: -100, opacity: 0 }}
+            //     >
+            //         <span className="rain-warning-icon">🌧️</span>
+            //         <span className="rain-warning-text">
+            //             ⚠️ Rain expected at KL University! Don't forget to bring your umbrella! ☔
+            //         </span>
+            //         <button 
+            //             className="rain-warning-close"
+            //             onClick={() => setShowRainWarning(false)}
+            //         >
+            //             ×
+            //         </button>
+            //     </motion.div>
+            // )}
 
             {/* Progress Bar */}
             <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
